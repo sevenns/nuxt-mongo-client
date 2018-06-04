@@ -56,6 +56,21 @@ module.exports = (env) => {
               cacheDirectory: true
             }
           }]
+        },
+
+        {
+          test: /\.(js)$/,
+          exclude: [/node_modules/],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: true,
+                cacheDirectory: true
+              }
+            },
+            'eslint-loader'
+          ]
         }
       ]
     },

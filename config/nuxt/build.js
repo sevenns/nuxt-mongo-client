@@ -9,6 +9,6 @@ module.exports = {
   },
 
   extend (config) {
-    config.resolve.alias['styles'] = styles
+    config.resolve.alias.styles = styles
   }
 }

@@ -1,6 +1,4 @@
 const chalk = require('chalk')
-const { resolve } = require('path')
-const paths = require('../config/paths')
 const { once } = require('ramda')
 const nodemon = require('nodemon')
 const webpack = require('webpack')

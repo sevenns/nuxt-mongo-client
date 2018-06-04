@@ -1,6 +1,8 @@
 const serve = require('koa-static')
+const mongo = require('koa-mongo')
 const bodyParser = require('koa-bodyparser')
 const config = require('../config/server')
+const mongoConfig = require('../config/mongo')
 
 module.exports = (app) => {
   app.use(async (context, next) => {
@@ -20,6 +22,7 @@ module.exports = (app) => {
     }
   })
 
+  app.use(mongo(mongoConfig))
   app.use(bodyParser())
   app.use(serve(config.static))
 }

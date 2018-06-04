@@ -38,20 +38,20 @@ if (process.platform === 'win32') {
       console.log(error)
       process.exitCode = 1
     }
-  
+
     exec.quiet(`net start ${serviceName}`, () => {
       spinner.succeed(chalk.green.bold(messages.started))
     })
   })
 } else {
-  command += ` --fork`
+  command += ' --fork'
 
   exec.quiet(command, (error) => {
     if (error) {
       console.log(error)
       process.exitCode = 1
     }
-  
+
     spinner.succeed(chalk.green.bold(messages.started))
   })
 }

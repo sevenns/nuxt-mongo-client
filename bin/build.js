@@ -16,35 +16,33 @@ clear()
 
 spinner.start(chalk.cyan.bold('Building client...\n'))
 
-exec.quiet(`rimraf ${paths.app}`).then(res => {
+exec.quiet(`rimraf ${paths.app}`).then((res) => {
   if (res.status) {
     spinner.fail(chalk.red.bold('Building client fail.\n'))
     console.log(res.stdout)
   }
 
   return res.status
-}).then(status => {
-  if (!status) {
-    return exec.quiet(`nuxt build -c ${nuxtConfig}`).then(res => {
+}).then((cleanStatus) => {
+  if (!cleanStatus) {
+    return exec.quiet(`nuxt build -c ${nuxtConfig}`).then((res) => {
       if (res.status) {
         console.log(res.stdout)
       }
-  
+
       return res.status
-    }).then(status => {
+    }).then((status) => {
       if (status) {
         spinner.fail(chalk.red.bold('\nBuilding client fail.\n'))
-
-        return false
       } else {
         spinner.succeed(chalk.green.bold('Building client complete.\n'))
         spinner.start(chalk.cyan.bold('Building server...\n'))
 
         return compiler.run((error, stats) => {
           if (error || stats.hasErrors()) {
-            console.log(stats.toString({ colors: true }) + '\n\n')
+            console.log(stats.toString({ colors: true }))
 
-            spinner.fail(chalk.red.bold('Building server fail.\n'))
+            spinner.fail(chalk.red.bold('\nBuilding server fail.\n'))
             process.exitCode = 1
           } else {
             spinner.succeed(chalk.green.bold('Building server complete.\n'))
@@ -53,6 +51,10 @@ exec.quiet(`rimraf ${paths.app}`).then(res => {
           return !(error || stats.hasErrors())
         })
       }
+
+      return status
     })
   }
+
+  return cleanStatus
 })
