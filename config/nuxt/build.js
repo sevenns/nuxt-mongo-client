@@ -1,4 +1,7 @@
 const paths = require('../paths')
+const { resolve } = require('path')
+
+const styles = resolve(paths.client, 'assets/styles')
 
 module.exports = {
   postcss: {
@@ -6,7 +9,6 @@ module.exports = {
   },
 
   extend (config) {
-    config.resolve.alias['~styles'] = paths.client
-    config.resolve.alias['~components'] = `${paths.client}/components`
+    config.resolve.alias['styles'] = styles
   }
 }

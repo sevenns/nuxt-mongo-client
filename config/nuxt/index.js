@@ -10,5 +10,5 @@ module.exports = {
 
   srcDir: paths.client,
   buildDir: paths.app,
-  loading: '~components/PageLoader.vue',
+  loading: `${paths.client}/components/PageLoader.vue`
 }

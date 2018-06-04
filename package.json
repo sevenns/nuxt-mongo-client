@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mongo-client",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Nuxt MongoDB client build",
   "private": true,
   "repository": {
@@ -21,7 +21,8 @@
   "homepage": "https://github.com/sevenns/nuxt-mongo-client#readme",
   "scripts": {
     "dev": "nuxt dev -c ./config/nuxt/index.js",
-    "build": "nuxt build -c ./config/nuxt/index.js",
+    "build": "node ./bin/build.js",
+    "clean": "node ./bin/clean.js",
     "db:start": "node ./bin/db-start.js",
     "db:stop": "node ./bin/db-stop.js"
   },

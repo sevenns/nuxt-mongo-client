@@ -28,7 +28,7 @@ export default {
 
 <style lang='sass' scoped>
 
-@import '~@/assets/styles/variables/colors'
+@import '~styles/variables/colors'
 
 .page-loader
   align-items: center

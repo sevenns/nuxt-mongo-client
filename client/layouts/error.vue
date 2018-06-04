@@ -23,7 +23,7 @@ export default {
 
 <style lang='sass' scoped>
 
-@import '~@/assets/styles/functions/rem'
+@import '~styles/functions/rem'
 
 .error-block
   text-align: center
