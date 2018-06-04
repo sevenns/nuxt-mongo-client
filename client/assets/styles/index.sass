@@ -1,0 +1,39 @@
+@import 'fonts/index'
+@import 'mixins/index'
+@import 'functions/index'
+@import 'variables/index'
+@import 'components/index'
+
+
+*, *::after, *::before
+  box-sizing: border-box
+
+html
+  @include font(default)
+  font-size: $font-size
+
+body
+  @include font(default)
+  color: $color-pickled-bluewood
+  font-size: 1rem
+  line-height: 1.6
+  min-width: 320px
+  overflow-x: hidden
+  position: relative
+
+h1, h2, h3, h4, h5, h6, p, ul
+  margin: 0
+  padding: 0
+
+textarea, input, select
+  appearance: none !important
+  border-radius: 0 !important
+
+.content
+  display: flex
+  flex-direction: column
+  margin: 0 auto
+  margin-top: 25vh
+  padding: 32px 0
+  min-height: 75vh
+  max-width: 600px
