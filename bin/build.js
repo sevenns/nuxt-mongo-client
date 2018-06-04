@@ -19,6 +19,7 @@ spinner.start(chalk.cyan.bold('Building client...\n'))
 exec.quiet(`rimraf ${paths.app}`).then((res) => {
   if (res.status) {
     spinner.fail(chalk.red.bold('Building client fail.\n'))
+    console.log(res.stderr)
     console.log(res.stdout)
   }
 
@@ -27,6 +28,7 @@ exec.quiet(`rimraf ${paths.app}`).then((res) => {
   if (!cleanStatus) {
     return exec.quiet(`nuxt build -c ${nuxtConfig}`).then((res) => {
       if (res.status) {
+        console.log(res.stderr)
         console.log(res.stdout)
       }
 

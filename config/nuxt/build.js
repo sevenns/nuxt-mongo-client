@@ -10,5 +10,12 @@ module.exports = {
 
   extend (config) {
     config.resolve.alias.styles = styles
+
+    config.module.rules.push({
+      enforce: 'pre',
+      test: /\.(js|vue)$/,
+      loader: 'eslint-loader',
+      include: [paths.client]
+    })
   }
 }
