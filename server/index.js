@@ -8,6 +8,9 @@ const app = new Koa()
 const host = process.env.HOST || config.host
 const port = process.env.PORT || config.port
 
+const message = 'The server is launched at:'
+const info = `${config.host}:${config.port}`
+
 nuxtConfig.dev = !(app.env === 'production')
 
 const nuxt = new Nuxt(nuxtConfig)
@@ -36,4 +39,8 @@ app.use((context) => {
   })
 })
 
-app.listen(port, host)
+app.listen(port, host, () => {
+  if (app.env === 'production') {
+    console.log(`${message} ${info}\n`)
+  }
+})
