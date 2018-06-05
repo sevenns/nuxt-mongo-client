@@ -8,6 +8,8 @@ module.exports = {
     plugins: { autoprefixer: {} }
   },
 
+  vendor: ['~/plugins/axios'],
+
   extend (config) {
     config.resolve.alias.styles = styles
 

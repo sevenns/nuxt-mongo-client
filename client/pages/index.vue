@@ -1,12 +1,20 @@
 <template lang='pug'>
 
 .div
-  h1 Nuxt MongoDB client app
+  vheader
+
+  .content
+    h1 Nuxt MongoDB client app
+    nuxt-link.link(to='/posts') View posts
 
 </template>
 
 <script>
 
-export default {}
+import Header from '~/components/Header'
+
+export default {
+  components: { vheader: Header }
+}
 
 </script>
