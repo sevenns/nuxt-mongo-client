@@ -3,6 +3,7 @@ const mongo = require('koa-mongo')
 const mount = require('koa-mount')
 const bodyParser = require('koa-bodyparser')
 const routes = require('./routes')
+const database = require('./database')
 const config = require('../config/server')
 const mongoConfig = require('../config/mongo')
 
@@ -25,6 +26,7 @@ module.exports = (app) => {
   })
 
   app.use(mongo(mongoConfig))
+  app.use(database)
   app.use(bodyParser())
   app.use(serve(config.static))
   app.use(mount('/api', routes()))
