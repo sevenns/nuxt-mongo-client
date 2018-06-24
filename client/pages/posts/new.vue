@@ -12,7 +12,7 @@ div
         text='Add',
         @click='add',
         :loading='isAdding',
-        :disabled='!title || !text || !author'
+        :disabled='!validate()'
       )
 
     .post-form
@@ -58,7 +58,7 @@ export default {
 
   methods: {
     async add () {
-      if (this.title && this.text.length >= 100 && this.author) {
+      if (this.validate()) {
         this.isAdding = true
 
         try {
@@ -79,6 +79,10 @@ export default {
           this.isAdding = false
         }
       }
+    },
+
+    validate () {
+      return this.title && this.text.length >= 100 && this.author
     }
   }
 }
