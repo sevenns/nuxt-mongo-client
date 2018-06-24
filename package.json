@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mongo-client",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "description": "Nuxt MongoDB client build",
   "private": true,
   "repository": {
@@ -25,8 +25,8 @@
     "start": "node ./bin/start.js",
     "clean": "node ./bin/clean.js",
     "icons": "node ./bin/icons.js",
-    "db:start": "node ./bin/db-start.js",
-    "db:stop": "node ./bin/db-stop.js"
+    "db:start": "mongolor start",
+    "db:stop": "mongolor stop"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -54,6 +54,7 @@
     "eslint-plugin-vue": "^4.5.0",
     "executive": "^1.5.13",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "mongolor": "^1.0.0",
     "mongoose": "^5.1.6",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.5",
