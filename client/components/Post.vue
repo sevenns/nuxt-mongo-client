@@ -4,13 +4,19 @@
   nuxt-link.post__title(:to='link')
     h3 {{ title }}
   p {{ cropText(text, 200) }}
-  .post__date
-    icon(name='calendar', height='24')
-    | {{ date }}
+  .post__footer
+    .post__author
+      icon(name='author', height='24')
+      | {{ author }}
+    .post__date
+      icon(name='calendar', height='24')
+      | {{ convertDate(date) }}
 
 </template>
 
 <script>
+
+import moment from 'moment'
 
 export default {
   props: {
@@ -22,8 +28,12 @@ export default {
       type: String,
       required: true
     },
-    date: {
+    author: {
       type: String,
+      required: true
+    },
+    date: {
+      type: Date,
       required: true
     },
     link: {
@@ -37,6 +47,10 @@ export default {
       const croppedText = text.slice(0, length)
 
       return text.length <= length ? text : `${croppedText}...`
+    },
+
+    convertDate (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     }
   }
 }

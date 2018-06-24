@@ -77,7 +77,7 @@ module.exports = (env) => {
 
     plugins: [
       new webpack.DefinePlugin({
-        NODE_ENV: env,
+        'process.env.NODE_ENV': JSON.stringify(env),
         __DEV__: env === 'development'
       }),
       new FriendlyErrors({

@@ -18,7 +18,7 @@ export const getters = {
 
 export const actions = {
   async fetch ({ commit }) {
-    const posts = await axios.get('/api/posts/get')
+    const posts = await axios.post('/api/posts/get')
 
     commit('SET', posts.data)
   }

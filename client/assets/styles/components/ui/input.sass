@@ -1,0 +1,22 @@
+.input
+  outline: none
+  border: 2px solid rgba($color-pickled-bluewood, .1)
+  box-shadow: 0
+  border-radius: 5px
+  width: 100%
+  padding: 10px
+  @include font(default)
+  color: $color-pickled-bluewood
+  font-size: rem(14px)
+
+::-webkit-input-placeholder
+  @include font(default)
+  color: rgba($color-pickled-bluewood, .5)
+  transition: color $animation-duration $animation-timing
+  font-size: rem(14px)
+
+::-moz-placeholder
+  @include font(default)
+  color: rgba($color-pickled-bluewood, .5)
+  transition: color $animation-duration $animation-timing
+  font-size: rem(14px)

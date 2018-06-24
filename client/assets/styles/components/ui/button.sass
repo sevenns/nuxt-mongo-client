@@ -12,15 +12,21 @@
   padding: 12px
   text-decoration: none
   width: auto
-  transition: background-color $animation-duration $animation-timing
+  transition: background-color $animation-duration $animation-timing, opacity $animation-duration $animation-timing
   border-radius: 5px
   position: relative
 
   &:hover
     background-color: rgba($color-pickled-bluewood, .05)
-  
+
   &:active
     transform: scale(.95)
+
+  &[disabled]
+    opacity: .25
+
+    &:active
+      transform: none
 
 // sass-lint:disable no-qualifying-elements force-element-nesting
 button.button

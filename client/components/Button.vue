@@ -3,7 +3,8 @@
 button.button(
   type='default',
   @click='click',
-  :class='{ "button-loading": loading }'
+  :class='{ "button-loading": loading }',
+  :disabled='disabled'
 )
   .button__icon(v-if='icon')
     icon(:name='icon', height='24')
@@ -23,6 +24,10 @@ export default {
       type: String,
       default: ''
     },
+    to: {
+      type: String,
+      default: ''
+    },
     text: {
       type: String,
       required: true
@@ -30,13 +35,21 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
   methods: {
     click () {
-      if (!this.loading) {
-        this.$emit('click')
+      if (!this.loading && !this.disabled) {
+        if (this.to) {
+          this.$router.push(this.to)
+        } else {
+          this.$emit('click')
+        }
       }
     }
   }

@@ -4,17 +4,28 @@ div
   vheader
 
   .content
-    h1 Posts
+    .content__header
+      h1 Posts
 
-    .posts
+      vbutton(
+        icon='plus',
+        text='New post',
+        to='/posts/new'
+      )
+
+    .posts(v-if='posts.length')
       post(
         v-for='post in posts',
         :key='post._id',
         :title='post.title',
-        :text='post.texts[0]',
-        :date='convertDate(post.date)',
+        :text='post.text',
+        :author='post.author',
+        :date='new Date(post.createdAt)',
         :link='generatePostLink(post._id)'
       )
+
+    .posts(v-else)
+      span Nothing to show :(
 
 </template>
 
@@ -22,12 +33,14 @@ div
 
 import { mapGetters } from 'vuex'
 import Header from '~/components/Header'
+import Button from '~/components/Button'
 import Post from '~/components/Post'
 
 export default {
   components: {
     post: Post,
-    vheader: Header
+    vheader: Header,
+    vbutton: Button
   },
 
   async fetch ({ store }) {
@@ -37,10 +50,6 @@ export default {
   computed: mapGetters({ posts: 'posts/GET' }),
 
   methods: {
-    convertDate (date) {
-      return new Date(date).toLocaleString('en')
-    },
-
     generatePostLink (uid) {
       return `/posts/${uid}`
     }

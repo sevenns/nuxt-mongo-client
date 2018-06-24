@@ -8,23 +8,30 @@ div
 
     .post__date
       icon(name='calendar', height='24')
-      | {{ convertDate(post.date) }}
+      | {{ convertDate(post.createdAt) }}
 
-    p(v-for='(text, uid) in post.texts', :key='uid') {{ text }}
+    p.post__text {{ post.text }}
 
-    .post__button
-      vbutton(
-        icon='clap',
-        :text='`${post.claps}`',
-        @click='clap',
-        :loading='isClapping'
-      )
+    .post__footer.post__footer_space
+      .post__button
+        vbutton(
+          icon='clap',
+          :text='`${post.claps}`',
+          @click='clap',
+          :loading='isClapping'
+        )
+
+      .post__author
+        icon(name='author', height='24')
+        | {{ post.author }}
 
 </template>
 
 <script>
 
 import axios from '~/plugins/axios'
+import moment from 'moment'
+
 import Header from '~/components/Header'
 import Button from '~/components/Button'
 
@@ -38,7 +45,7 @@ export default {
     const uid = params.post
     const post = await axios.post('/api/posts/get', { uid })
 
-    return { post: post.data[0] }
+    return { post: post.data }
   },
 
   data () {
@@ -49,21 +56,20 @@ export default {
 
   methods: {
     convertDate (date) {
-      return new Date(date).toLocaleString('en')
+      return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
 
     async clap () {
-      let post = null
+      try {
+        this.isClapping = true
+        await axios.post('/api/posts/clap', { uid: this.post._id })
 
-      this.isClapping = true
-      await axios.post('/api/posts/clap', {
-        uid: this.post._id,
-        claps: this.post.claps
-      })
-      post = await axios.post('/api/posts/get', { uid: this.post._id })
-
-      this.post.claps = post.data[0].claps
-      this.isClapping = false
+        this.post.claps += 1
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.isClapping = false
+      }
     }
   }
 }

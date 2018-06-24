@@ -19,7 +19,20 @@
   color: $color-pickled-bluewood
   text-decoration: none
 
-.post__date
+.post__text
+  padding: 48px 0
+  text-indent: 18px
+
+.post__footer
+  display: flex
+  flex-direction: row
+  align-items: center
+
+  &_space
+    justify-content: space-between
+
+.post__date,
+.post__author
   display: flex
   align-items: center
   text-align: right
@@ -27,3 +40,6 @@
 
   svg
     margin-right: 12px
+
+.post__author
+  margin-right: 24px
